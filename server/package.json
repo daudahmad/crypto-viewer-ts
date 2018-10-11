@@ -1,0 +1,25 @@
+{
+  "name": "crypto-viewer-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/App.js",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "author": "Daud Ahmad",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-koa": "^2.0.2",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "koa": "^2.5.3"
+  }
+}

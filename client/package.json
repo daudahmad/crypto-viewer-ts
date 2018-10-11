@@ -1,0 +1,51 @@
+{
+  "name": "crypto-viewer-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/App.js",
+  "scripts": {
+    "test": "jest --silent",
+    "test:coverage": "jest --coverage",
+    "test:update": "jest -u",
+    "test:watch": "jest --watch",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "tslint --project .",
+    "dev": "parcel src/index.html --port 8000",
+    "typecheck": "tsc --noEmit"
+  },
+  "author": "Daud Ahmad",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/reach__router": "^1.0.1",
+    "@types/react": "^16.4.14",
+    "@types/react-dom": "^16.0.8",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.6.0",
+    "parcel-bundler": "^1.10.1",
+    "prettier": "^1.14.3",
+    "react-test-renderer": "^16.5.2",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.1.1"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.1.2",
+    "@material-ui/icons": "^3.0.1",
+    "@reach/router": "^1.2.1",
+    "@types/react-redux": "^6.0.9",
+    "@types/redux": "^3.6.0",
+    "axios": "^0.18.0",
+    "emotion": "^9.2.12",
+    "react": "^16.5.2",
+    "react-cryptocoins": "^1.0.11",
+    "react-dom": "^16.5.2",
+    "react-emotion": "^9.2.12",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.1"
+  }
+}
