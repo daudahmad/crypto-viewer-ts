@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import styled from "react-emotion";
+
 import NavBar from "./NavBar";
 import PairsList from "./PairsList";
 import { PairsState, StoreState } from "../types";
-import { Store, Dispatch } from "react-redux/node_modules/redux";
 import { PairsAction, RequestPairs, requestPairs } from "../actions";
-import { request } from "https";
 
 // import logo from "./logo.svg";
 // import Button from '@material-ui/core/Button';
@@ -42,10 +42,12 @@ class App extends Component<Props, {}> {
   }
 
   render() {
+    const { isFetching, items } = this.props;
     return (
       <Container>
         <NavBar title="Crypto Viewer" />
-        {this.props.items.length > 1 && <PairsList pairs={this.props.items} />}
+        {isFetching && <div>Loading...</div>}
+        {!isFetching && <PairsList pairs={items} />}
       </Container>
     );
   }
@@ -73,5 +75,7 @@ const mapStateToProps = ({
   // };
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-// export default App;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

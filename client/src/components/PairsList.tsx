@@ -1,7 +1,8 @@
 import React from "react";
+import { Pairs } from "../types";
 
 interface Props {
-  pairs: [];
+  pairs: Pairs[];
 }
 
 class PairsList extends React.Component<Props, {}> {
@@ -9,14 +10,9 @@ class PairsList extends React.Component<Props, {}> {
     return (
       <ul>
         {this.props.pairs.map((pair, i) => (
-          <li key={i}>{pair}</li>
+          <li key={i}>{pair.label}</li>
         ))}
       </ul>
-      // <ul>
-      //     <li>BTC/USD</li>
-      //     <li>BTC/USD</li>
-      //     <li>BTC/USD</li>
-      // </ul>
     );
   }
 }

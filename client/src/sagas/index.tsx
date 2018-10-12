@@ -8,9 +8,9 @@ import { takeEvery } from "redux-saga/effects";
 function* fetchPairs() {
   try {
     const pairs = yield call(fetchPairsApi);
-    console.log("yield call(fetchPairsApi)");
-    console.log(pairs);
-    // yield put(actions.requestPairsSucceeded(pairs));
+    // console.log("yield call(fetchPairsApi)");
+    // console.log(pairs);
+    yield put(actions.requestPairsSucceeded(pairs));
     // yield put({ type: "USER_FETCH_SUCCEEDED", user: user });
   } catch (e) {
     yield put(actions.requestPairsFailed(e.message));

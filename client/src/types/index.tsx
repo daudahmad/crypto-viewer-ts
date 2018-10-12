@@ -1,5 +1,10 @@
+export interface Pairs {
+  symbol: string;
+  label: string;
+}
+
 export interface PairsState {
-  items: [];
+  items: Pairs[];
   isFetching: boolean;
 }
 
