@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import styled from "react-emotion";
 
-import NavBar from "./NavBar";
-import PairsList from "./PairsList";
+import NavBar from "../components/NavBar";
+import PairsList from "../components/PairsList";
 import { PairsState, StoreState } from "../types";
 import { PairsAction, RequestPairs, requestPairs } from "../actions";
 
@@ -16,6 +16,13 @@ const Container = styled("div")`
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+`;
+
+const PairsContainer = styled("div")`
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  text-align: center;
 `;
 
 interface Props extends PairsState {
@@ -33,10 +40,10 @@ class App extends Component<Props, {}> {
   }
 
   componentDidMount() {
-    console.log("Component mounted");
-    console.log("Dispatching fetchPairsaction");
+    // console.log("Component mounted");
+    // console.log("Dispatching fetchPairsaction");
     this.props.fetchPairs();
-    console.log("Dispatched fetchPairsaction");
+    // console.log("Dispatched fetchPairsaction");
     // Let's dispatch an action
     // const { dispatch } = this.props;
   }
@@ -46,8 +53,10 @@ class App extends Component<Props, {}> {
     return (
       <Container>
         <NavBar title="Crypto Viewer" />
-        {isFetching && <div>Loading...</div>}
-        {!isFetching && <PairsList pairs={items} />}
+        <PairsContainer>
+          {isFetching && <div>Loading...</div>}
+          {!isFetching && <PairsList pairs={items} />}
+        </PairsContainer>
       </Container>
     );
   }
@@ -59,20 +68,13 @@ const mapDispatchToProps = (dispatch: Dispatch<PairsAction>) => ({
   }
 });
 
-// function mapStateToProps(state: StoreState, { pairs }: { pairs: any }) {
 const mapStateToProps = ({
   pairs: { items, isFetching }
 }: {
   pairs: PairsState;
 }) => ({
-  // console.log(state);
-  // console.log(items);
-  // console.log(isFetching);
-  // const { items, isFetching } = pairs;
-  // return {
   items,
   isFetching
-  // };
 });
 
 export default connect(

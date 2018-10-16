@@ -9,8 +9,8 @@ import fetch from "./fetch";
 
 export default async function fetchPairs() {
   try {
-    const response = await fetch("/tickers?symbols=ALL");
-    // const response = await fetch("/tickers?symbols=tBTCUSD,tETHUSD,tETHBTC");
+    // const response = await fetch("/tickers?symbols=ALL");
+    const response = await fetch("/tickers?symbols=tBTCUSD,tLTCUSD,tLTCBTC,tETHUSD,tETHUSD,tETCBTC,tETCUSD");
     // const response = await axios.get(
     //   `${BASE_URL}/tickers?symbols=tBTCUSD,tLTCUSD,tETHUSD`
     // );

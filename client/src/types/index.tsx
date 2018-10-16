@@ -1,6 +1,8 @@
 export interface Pairs {
   symbol: string;
   label: string;
+  baseCurrency: string;
+  quoteCurrency: string;
 }
 
 export interface PairsState {
