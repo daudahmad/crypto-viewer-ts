@@ -3,27 +3,14 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import styled from "react-emotion";
 
-import NavBar from "../components/NavBar";
-import PairsList from "../components/PairsList";
-import { PairsState, StoreState } from "../types";
-import { PairsAction, RequestPairs, requestPairs } from "../actions";
+import TitleBar from "../TitleBar";
+import MarketsList from "../MarketsList";
+import { PairsState, StoreState } from "../../types";
+import { PairsAction, RequestPairs, requestPairs } from "../../actions";
 
 // import logo from "./logo.svg";
 // import Button from '@material-ui/core/Button';
 // import "./App.css";
-
-const Container = styled("div")`
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-`;
-
-const PairsContainer = styled("div")`
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  text-align: center;
-`;
 
 interface Props extends PairsState {
   fetchPairs: () => void;
@@ -40,27 +27,41 @@ class App extends Component<Props, {}> {
   }
 
   componentDidMount() {
-    // console.log("Component mounted");
-    // console.log("Dispatching fetchPairsaction");
     this.props.fetchPairs();
-    // console.log("Dispatched fetchPairsaction");
-    // Let's dispatch an action
-    // const { dispatch } = this.props;
   }
+
+  // console.log("Component mounted");
+  // console.log("Dispatching fetchPairsaction");
+  // console.log("Dispatched fetchPairsaction");
+  // Let's dispatch an action
+  // const { dispatch } = this.props;
 
   render() {
     const { isFetching, items } = this.props;
     return (
-      <Container>
-        <NavBar title="Crypto Viewer" />
+      <Wrapper>
+        <TitleBar />
         <PairsContainer>
           {isFetching && <div>Loading...</div>}
-          {!isFetching && <PairsList pairs={items} />}
+          {!isFetching && <MarketsList pairs={items} />}
         </PairsContainer>
-      </Container>
+      </Wrapper>
     );
   }
 }
+
+const Wrapper = styled("div")`
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+`;
+
+const PairsContainer = styled("div")`
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  text-align: center;
+`;
 
 const mapDispatchToProps = (dispatch: Dispatch<PairsAction>) => ({
   fetchPairs() {

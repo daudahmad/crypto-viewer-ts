@@ -8,10 +8,11 @@ declare module "react-cryptocoins" {
     size?: Size;
   }
 
-//   export class cc extends React.SFC<Props>;
+  export interface CryptoCoinInterface
+    extends React.StatelessComponent<Props> {}
 
-  export const Btc: React.SFC<Props>;
-  export const Eth: React.SFC<Props>;
-  export const Ltc: React.SFC<Props>;
-  export const Etc: React.SFC<Props>;
+  export const Btc: CryptoCoinInterface;
+  export const Eth: CryptoCoinInterface;
+  export const Ltc: CryptoCoinInterface;
+  export const Etc: CryptoCoinInterface;
 }
