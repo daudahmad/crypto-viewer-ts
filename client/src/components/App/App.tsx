@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
+import { Router } from "@reach/router";
 import styled from "react-emotion";
 
 import TitleBar from "../TitleBar";
 import MarketsList from "../MarketsList";
+import Markets from "../Markets";
 import { PairsState, StoreState } from "../../types";
 import { PairsAction, RequestPairs, requestPairs } from "../../actions";
 
@@ -12,22 +14,22 @@ import { PairsAction, RequestPairs, requestPairs } from "../../actions";
 // import Button from '@material-ui/core/Button';
 // import "./App.css";
 
-interface Props extends PairsState {
-  fetchPairs: () => void;
-}
+// interface Props extends PairsState {
+//   fetchPairs: () => void;
+// }
 // interface Props {
 //   pairs: PairsState
 //   // items: [];
 //   // isFetching: boolean;
 // }
 
-class App extends Component<Props, {}> {
+class App extends Component<{}, {}> {
   constructor(props: any) {
     super(props);
   }
 
   componentDidMount() {
-    this.props.fetchPairs();
+    // this.props.fetchPairs();
   }
 
   // console.log("Component mounted");
@@ -37,14 +39,15 @@ class App extends Component<Props, {}> {
   // const { dispatch } = this.props;
 
   render() {
-    const { isFetching, items } = this.props;
+    // const { isFetching, items } = this.props;
     return (
       <Wrapper>
         <TitleBar />
-        <PairsContainer>
-          {isFetching && <div>Loading...</div>}
-          {!isFetching && <MarketsList pairs={items} />}
-        </PairsContainer>
+        <MainContent>
+          <Router>
+            <Markets path="/" />
+          </Router>
+        </MainContent>
       </Wrapper>
     );
   }
@@ -56,29 +59,43 @@ const Wrapper = styled("div")`
   font-family: sans-serif;
 `;
 
-const PairsContainer = styled("div")`
+const MainContent = styled("div")`
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   text-align: center;
 `;
 
-const mapDispatchToProps = (dispatch: Dispatch<PairsAction>) => ({
-  fetchPairs() {
-    dispatch(requestPairs());
-  }
-});
+export default App;
 
-const mapStateToProps = ({
-  pairs: { items, isFetching }
-}: {
-  pairs: PairsState;
-}) => ({
-  items,
-  isFetching
-});
+{
+  /* <Results path="/" /> */
+}
+{
+  /* <Details path="/details/:id" /> */
+}
+{
+  /* {isFetching && <div>Loading...</div>} */
+}
+{
+  /* {!isFetching && } */
+}
+// const mapDispatchToProps = (dispatch: Dispatch<PairsAction>) => ({
+//   fetchPairs() {
+//     dispatch(requestPairs());
+//   }
+// });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+// const mapStateToProps = ({
+//   pairs: { items, isFetching }
+// }: {
+//   pairs: PairsState;
+// }) => ({
+//   items,
+//   isFetching
+// });
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(App);

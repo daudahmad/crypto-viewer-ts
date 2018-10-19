@@ -10,15 +10,19 @@ interface Props {
 
 const MarketListItem = ({ pair }: Props) => {
   return (
-    <ListItem button>
+    <Wrapper button>
       <MarketSymbol name={pair.baseCurrency} />
       <WrapperSpan>{pair.baseCurrency}</WrapperSpan>
       <WrapperSpan>/</WrapperSpan>
       <MarketSymbol name={pair.quoteCurrency} />
       <WrapperSpan>{pair.quoteCurrency}</WrapperSpan>
-    </ListItem>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled(ListItem)`
+  justify-content: center;
+`;
 
 const WrapperSpan = styled("span")`
   margin-left: 5px;
