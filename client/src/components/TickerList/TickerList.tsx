@@ -4,22 +4,24 @@ import List from "@material-ui/core/List";
 // import { Btc, Ltc, Eth, Etc } from "react-cryptocoins";
 // import CryptoIcon from "../CurrencyIcon/CurrencyIcon";
 
-import MarketListItem from "../MarketListItem";
+import TickerListItem from "../TickerListItem";
 import { Pairs } from "../../types";
 // import { Icon, ListItemIcon } from "@material-ui/core";
 
 interface Props {
   pairs: Array<Pairs>;
+  onSelectMarketClick: (marketSymbol: string) => void;
 }
 
-class MarketsList extends React.Component<Props, {}> {
+class TickerList extends React.Component<Props, {}> {
   public render() {
     return (
       <List>
         {this.props.pairs.map((pair: Pairs) => (
-          <MarketListItem
+          <TickerListItem
             pair={pair}
             key={pair.baseCurrency + pair.quoteCurrency}
+            onClick={this.props.onSelectMarketClick}
           />
         ))}
       </List>
@@ -27,4 +29,4 @@ class MarketsList extends React.Component<Props, {}> {
   }
 }
 
-export default MarketsList;
+export default TickerList;

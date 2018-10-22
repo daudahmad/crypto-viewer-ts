@@ -2,7 +2,8 @@ import React from "react";
 import styled from "react-emotion";
 
 interface Props {
-  pairSymbol: string;
+  pairSymbol?: string;
+  path: string
 }
 
 const MarketDetails = ({ pairSymbol }: Props) => {

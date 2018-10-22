@@ -15,9 +15,11 @@ export default function pairs(
   // console.log(`action type: ${action.type}`);
   switch (action.type) {
     case PAIRS_FETCH_REQUESTED:
+      // console.log(`action type: ${action.type}`);
       return { ...state, isFetching: true };
 
     case PAIRS_FETCH_SUCCEEDED:
+      // console.log(`action type: ${action.type}`);
       const nextState = { ...state };
       // Loop over the array here
       nextState.items = action.pairs

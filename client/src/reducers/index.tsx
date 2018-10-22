@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import pairs from "./pairs";
+import selectedMarket from "./selectedMarket";
 
 export default combineReducers({
-  pairs
+  pairs,
+  selectedMarket
 });
 // console.log(rootReducer);
 

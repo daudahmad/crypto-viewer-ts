@@ -1,4 +1,5 @@
 import * as constants from "../constants";
+import MarketSymbol from "../components/MarketSymbol";
 
 export interface RequestPairs {
   type: constants.PAIRS_FETCH_REQUESTED;
@@ -6,15 +7,19 @@ export interface RequestPairs {
 
 export interface RequestPairsSucceeded {
   type: constants.PAIRS_FETCH_SUCCEEDED;
-  pairs: []
+  pairs: [];
 }
 
 export interface RequestPairsFailed {
   type: constants.PAIRS_FETCH_FAILED;
-  message: string
+  message: string;
 }
 
-export type PairsAction = RequestPairs | RequestPairsSucceeded | RequestPairsFailed;
+export type PairsAction =
+  | RequestPairs
+  | RequestPairsSucceeded
+  | RequestPairsFailed
+  | SelectMarket;
 
 /* 
     These are our action creators 
@@ -33,9 +38,21 @@ export function requestPairsSucceeded(pairs: []): RequestPairsSucceeded {
   };
 }
 
-export function requestPairsFailed(message: string): RequestPairsFailed{
+export function requestPairsFailed(message: string): RequestPairsFailed {
   return {
     type: constants.PAIRS_FETCH_FAILED,
     message
   };
 }
+
+export const selectMarket = (marketSymbol: string): SelectMarket => ({
+  type: constants.SELECT_MARKET,
+  marketSymbol
+});
+
+export interface SelectMarket {
+  type: constants.SELECT_MARKET;
+  marketSymbol: string;
+}
+
+export type SelectMarketAction = SelectMarket;

@@ -3,13 +3,21 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import styled from "react-emotion";
 
-import MarketsList from "../MarketsList";
+import TickerList from "../TickerList";
 import { PairsState, StoreState } from "../../types";
-import { PairsAction, RequestPairs, requestPairs } from "../../actions";
+import {
+  PairsAction,
+  RequestPairs,
+  requestPairs,
+  selectMarket
+} from "../../actions";
 import Loading from "../Loading";
+import { select } from "redux-saga/effects";
+import MarketSymbol from "../MarketSymbol";
 
 interface Props extends PairsState {
   fetchPairs: () => void;
+  selectMarket: (marketSymbol: string) => void;
 }
 
 class Markets extends Component<Props, {}> {
@@ -21,12 +29,16 @@ class Markets extends Component<Props, {}> {
     this.props.fetchPairs();
   }
 
+  handleSelectMarketClick = (marketSymbol: string) => {
+    this.props.selectMarket(marketSymbol);
+  };
+
   render() {
-    const { isFetching, items } = this.props;
+    const { isFetching, items} = this.props;
     return (
       <Fragment>
         {isFetching && <Loading />}
-        {!isFetching && <MarketsList pairs={items} />}
+        {!isFetching && <TickerList pairs={items} onSelectMarketClick={this.handleSelectMarketClick} />}
       </Fragment>
     );
   }
@@ -35,6 +47,9 @@ class Markets extends Component<Props, {}> {
 const mapDispatchToProps = (dispatch: Dispatch<PairsAction>) => ({
   fetchPairs() {
     dispatch(requestPairs());
+  },
+  selectMarket(marketSymbol: string) {
+    dispatch(selectMarket(marketSymbol));
   }
 });
 

@@ -5,7 +5,7 @@ import { Router } from "@reach/router";
 import styled from "react-emotion";
 
 import TitleBar from "../TitleBar";
-import MarketsList from "../MarketsList";
+import MarketDetails from "../MarketDetails";
 import Markets from "../Markets";
 import { PairsState, StoreState } from "../../types";
 import { PairsAction, RequestPairs, requestPairs } from "../../actions";
@@ -46,6 +46,7 @@ class App extends Component<{}, {}> {
         <MainContent>
           <Router>
             <Markets path="/" />
+            <MarketDetails path="/marketdetails" />
           </Router>
         </MainContent>
       </Wrapper>
