@@ -1,19 +1,41 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import styled from "react-emotion";
 
-interface Props {
+import Loading from "../Loading";
+import Ticker from "../Ticker";
+import { SelectedTickerState } from "../../types";
+
+interface Props extends SelectedTickerState {
   pairSymbol?: string;
-  path: string
+  path: string;
 }
 
-const MarketDetails = ({ pairSymbol }: Props) => {
-  return (
-    <Wrapper />
-  );
-};
+class MarketDetails extends Component<Props, {}> {
+  render() {
+    const { isFetching, tickerSymbol, tickerDetails } = this.props;
+    return (
+      <Fragment>
+        {isFetching && <Loading />}
+        {!isFetching && <Ticker tickerDetails={tickerDetails} />}
+      </Fragment>
+    );
+  }
+}
 
-const Wrapper= styled("div")`
+const Wrapper = styled("div")`
   margin-left: 5px;
 `;
 
-export default MarketDetails;
+const mapStateToProps = ({
+  selectedTicker: { tickerSymbol, tickerDetails, isFetching }
+}: {
+  selectedTicker: SelectedTickerState;
+}) => ({
+  tickerSymbol,
+  tickerDetails,
+  isFetching
+});
+
+export default connect(mapStateToProps)(MarketDetails);

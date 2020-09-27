@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot 1`] = `
+Array [
+  <h4>
+    Ticker Details
+  </h4>,
+  <ul
+    className="MuiList-root-1 MuiList-padding-2"
+  />,
+]
+`;

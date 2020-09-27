@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import MarketSymbol from "../MarketSymbol";
 import { Pairs } from "../../types";
-import styled from "react-emotion";
+// import styled from "react-emotion";
 import ListItem from "@material-ui/core/ListItem";
 import { navigate } from "@reach/router";
+import { Box, Card, Image, Heading, Text } from "rebass";
+import styled from "styled-components";
 
 interface Props {
   pair: Pairs;
@@ -22,7 +24,7 @@ class TickerListItem extends Component<Props, {}> {
 
   handleOnClick = () => {
     this.props.onClick(this.props.pair.symbol);
-    // navigate("/marketdetails");
+    navigate("/marketdetails");
   };
 
   render() {

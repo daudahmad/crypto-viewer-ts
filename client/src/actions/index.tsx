@@ -1,5 +1,6 @@
 import * as constants from "../constants";
 import MarketSymbol from "../components/MarketSymbol";
+import { Pairs } from "../types";
 
 export interface RequestPairs {
   type: constants.PAIRS_FETCH_REQUESTED;
@@ -7,7 +8,7 @@ export interface RequestPairs {
 
 export interface RequestPairsSucceeded {
   type: constants.PAIRS_FETCH_SUCCEEDED;
-  pairs: [];
+  pairs: Array<Array<any>>;
 }
 
 export interface RequestPairsFailed {
@@ -18,8 +19,7 @@ export interface RequestPairsFailed {
 export type PairsAction =
   | RequestPairs
   | RequestPairsSucceeded
-  | RequestPairsFailed
-  | SelectMarket;
+  | RequestPairsFailed;
 
 /* 
     These are our action creators 
@@ -31,7 +31,9 @@ export function requestPairs(): RequestPairs {
   };
 }
 
-export function requestPairsSucceeded(pairs: []): RequestPairsSucceeded {
+export function requestPairsSucceeded(
+  pairs: Array<Array<any>>
+): RequestPairsSucceeded {
   return {
     type: constants.PAIRS_FETCH_SUCCEEDED,
     pairs
@@ -45,14 +47,64 @@ export function requestPairsFailed(message: string): RequestPairsFailed {
   };
 }
 
-export const selectMarket = (marketSymbol: string): SelectMarket => ({
-  type: constants.SELECT_MARKET,
-  marketSymbol
-});
+/* 
+  Select ticker action
+*/
 
-export interface SelectMarket {
-  type: constants.SELECT_MARKET;
-  marketSymbol: string;
+export interface SelectTicker {
+  type: constants.SELECT_TICKER;
+  tickerSymbol: string;
 }
 
-export type SelectMarketAction = SelectMarket;
+export const selectTicker = (tickerSymbol: string): SelectTicker => ({
+  type: constants.SELECT_TICKER,
+  tickerSymbol
+});
+
+/* 
+  Requesting selected ticker's market state
+*/
+
+export interface RequestTicker {
+  type: constants.TICKER_FETCH_REQUESTED;
+}
+
+export interface RequestTickerSucceeded {
+  type: constants.TICKER_FETCH_SUCCEEDED;
+  tickerState: Array<number>;
+}
+
+export interface RequestTickerFailed {
+  type: constants.TICKER_FETCH_FAILED;
+  message: string;
+}
+
+export function requestTicker(): RequestTicker {
+  return {
+    type: constants.TICKER_FETCH_REQUESTED
+  };
+}
+
+export function requestTickerSucceeded(
+  tickerState: []
+): RequestTickerSucceeded {
+  return {
+    type: constants.TICKER_FETCH_SUCCEEDED,
+    tickerState
+  };
+}
+
+export function requestTickerFailed(message: string): RequestTickerFailed {
+  return {
+    type: constants.TICKER_FETCH_FAILED,
+    message
+  };
+}
+
+export type SelectTickerAction =
+  | SelectTicker
+  | RequestTicker
+  | RequestTickerSucceeded
+  | RequestTickerFailed;
+
+export type TickerActions = PairsAction | SelectTickerAction;

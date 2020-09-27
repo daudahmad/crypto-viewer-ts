@@ -5,6 +5,7 @@ import {
 } from "../constants";
 import { Pairs, PairsState, StoreState } from "../types";
 import { PairsAction } from "../actions";
+import { type } from "os";
 
 const initialState: PairsState = { isFetching: false, items: [] };
 
@@ -23,9 +24,9 @@ export default function pairs(
       const nextState = { ...state };
       // Loop over the array here
       nextState.items = action.pairs
-        .filter((pair: string) => pair[0][0] === "t")
+        .filter((pair: Array<string>) => pair[0][0] === "t")
         .map(
-          (pair: string): Pairs => ({
+          (pair: Array<string>): Pairs => ({
             symbol: pair[0],
             label: `${pair[0].substr(1, 3)}/${pair[0].substr(4, 6)}`,
             baseCurrency: pair[0].substr(1, 3),

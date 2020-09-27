@@ -1,11 +1,20 @@
-import { call, put, takeLatest, fork } from "redux-saga/effects";
-import fetchPairsApi from "../lib/fetch-pairs";
+import {
+  call,
+  put,
+  takeLatest,
+  fork,
+  takeEvery,
+  select
+} from "redux-saga/effects";
+import fetchPairsApi from "../api/fetch-pairs";
+import fetchTickerApi from "../api/fetch-ticker";
+import { selectedTickerSymbolSelector } from "../reducers/selectedTicker";
 import * as actions from "../actions";
 import * as constants from "../constants";
-import { takeEvery } from "redux-saga/effects";
+// import reducers from "../reducers";
 
 // worker Saga: will be fired on PAIRS_FETCH_REQUESTED action
-function* fetchPairs() {
+export function* fetchPairs(): any {
   try {
     const pairs = yield call(fetchPairsApi);
     // console.log("yield call(fetchPairsApi)");
@@ -18,19 +27,39 @@ function* fetchPairs() {
   }
 }
 
+function* fetchTicker() {
+  try {
+    const selectedTicker = yield select(selectedTickerSymbolSelector);
+    yield put(actions.requestTicker());
+    const ticker = yield call(fetchTickerApi, selectedTicker);
+    console.log(ticker);
+    yield put(actions.requestTickerSucceeded(ticker));
+  } catch (e) {
+    yield put(actions.requestTickerFailed(e.message));
+  }
+}
+
 /*
-  Does not allow concurrent fetches of user. If "USER_FETCH_REQUESTED" gets
+  Does not allow concurrent fetches of pairs. If "PAIRS_FETCH_REQUESTED" gets
   dispatched while a fetch is already pending, that pending fetch is cancelled
   and only the latest one will be run.
 */
-function* mySaga(): any {
-  // console.log(actions.requestPairs());
+function* watchFetchPairs(): any {
   yield takeLatest(constants.PAIRS_FETCH_REQUESTED, fetchPairs);
-  //   yield takeLatest("USER_FETCH_REQUESTED", fetchPairs);
+  // yield takeLatest("USER_FETCH_REQUESTED", fetchPairs);
 }
 
-// export default function* root(): any {
-//   yield fork(mySaga);
-// }
+function* watchSelectTicker() {
+  // console.log("watchSelectTicker called");
+  const res = yield takeEvery(constants.SELECT_TICKER, fetchTicker);
+  console.log(res);
+}
 
-export default mySaga;
+export default function* root(): any {
+  // yield takeLatest(constants.PAIRS_FETCH_REQUESTED, fetchPairs);
+  // yield all([watchFetchPairs(), watchSelectTicker()]);
+  yield fork(watchFetchPairs);
+  yield fork(watchSelectTicker);
+}
+
+// export default mySaga;

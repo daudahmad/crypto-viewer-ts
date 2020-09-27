@@ -12,4 +12,3 @@ I have tried to use the following libraries in a bid to solidify my understandin
 * Reach router
 * Koa
 * Eslint/Tslint
-* Containers/Components

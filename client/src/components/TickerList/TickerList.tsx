@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import List from "@material-ui/core/List";
 // import ListItemText from "@material-ui/core/ListItemText";
 // import { Btc, Ltc, Eth, Etc } from "react-cryptocoins";
@@ -16,15 +16,18 @@ interface Props {
 class TickerList extends React.Component<Props, {}> {
   public render() {
     return (
-      <List>
-        {this.props.pairs.map((pair: Pairs) => (
-          <TickerListItem
-            pair={pair}
-            key={pair.baseCurrency + pair.quoteCurrency}
-            onClick={this.props.onSelectMarketClick}
-          />
-        ))}
-      </List>
+      <Fragment>
+        <h4>Ticker Details</h4>
+        <List>
+          {this.props.pairs.map((pair: Pairs) => (
+            <TickerListItem
+              pair={pair}
+              key={pair.baseCurrency + pair.quoteCurrency}
+              onClick={this.props.onSelectMarketClick}
+            />
+          ))}
+        </List>
+      </Fragment>
     );
   }
 }

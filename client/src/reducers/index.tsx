@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import pairs from "./pairs";
-import selectedMarket from "./selectedMarket";
+import selectedTicker from "./selectedTicker";
 
 export default combineReducers({
   pairs,
-  selectedMarket
+  selectedTicker
 });
 // console.log(rootReducer);
 

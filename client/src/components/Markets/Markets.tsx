@@ -6,10 +6,9 @@ import styled from "react-emotion";
 import TickerList from "../TickerList";
 import { PairsState, StoreState } from "../../types";
 import {
-  PairsAction,
-  RequestPairs,
+  TickerActions,
   requestPairs,
-  selectMarket
+  selectTicker
 } from "../../actions";
 import Loading from "../Loading";
 import { select } from "redux-saga/effects";
@@ -17,10 +16,10 @@ import MarketSymbol from "../MarketSymbol";
 
 interface Props extends PairsState {
   fetchPairs: () => void;
-  selectMarket: (marketSymbol: string) => void;
+  selectTicker: (tickerSymbol: string) => void;
 }
 
-class Markets extends Component<Props, {}> {
+export class Markets extends Component<Props, {}> {
   constructor(props: any) {
     super(props);
   }
@@ -29,8 +28,8 @@ class Markets extends Component<Props, {}> {
     this.props.fetchPairs();
   }
 
-  handleSelectMarketClick = (marketSymbol: string) => {
-    this.props.selectMarket(marketSymbol);
+  handleSelectMarketClick = (tickerSymbol: string) => {
+    this.props.selectTicker(tickerSymbol);
   };
 
   render() {
@@ -44,12 +43,12 @@ class Markets extends Component<Props, {}> {
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<PairsAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<TickerActions>) => ({
   fetchPairs() {
     dispatch(requestPairs());
   },
-  selectMarket(marketSymbol: string) {
-    dispatch(selectMarket(marketSymbol));
+  selectTicker(tickerSymbol: string) {
+    dispatch(selectTicker(tickerSymbol));
   }
 });
 

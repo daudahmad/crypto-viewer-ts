@@ -16,6 +16,12 @@ app.use(async ctx => {
     // console.log(process.env);
     ctx.set(cors);
     ctx.body = res.data;
+  } else if (method === "GET" && path.startsWith("/ticker/")) {
+    // console.log(path);
+    const querystring = ctx.querystring;
+    const res = await axios.get(`${EXTERNAL_API_URL}${path}?${querystring}`);
+    ctx.set(cors);
+    ctx.body = res.data;
   } else {
     ctx.body = { message: "unsupported path" };
   }

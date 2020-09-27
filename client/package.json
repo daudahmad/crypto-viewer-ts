@@ -16,9 +16,11 @@
   "author": "Daud Ahmad",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@types/jest": "^23.3.9",
     "@types/reach__router": "^1.0.1",
     "@types/react": "^16.4.14",
     "@types/react-dom": "^16.0.8",
+    "@types/redux-saga": "^0.10.5",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
@@ -26,8 +28,10 @@
     "jest": "^23.6.0",
     "parcel-bundler": "^1.10.1",
     "prettier": "^1.14.3",
-    "react-test-renderer": "^16.5.2",
+    "react-test-renderer": "^16.6.1",
     "react-to-typescript-definitions": "^1.2.0",
+    "tape": "^4.9.1",
+    "ts-jest": "^23.10.4",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-react": "^3.6.0",
@@ -38,7 +42,11 @@
     "@material-ui/icons": "^3.0.1",
     "@reach/router": "^1.2.1",
     "@types/react-redux": "^6.0.9",
+    "@types/react-test-renderer": "^16.0.3",
+    "@types/rebass": "^0.3.1",
     "@types/redux": "^3.6.0",
+    "@types/styled-components": "^4.0.3",
+    "@types/tape": "^4.2.32",
     "axios": "^0.18.0",
     "emotion": "^9.2.12",
     "react": "^16.5.2",
@@ -46,7 +54,9 @@
     "react-dom": "^16.5.2",
     "react-emotion": "^9.2.12",
     "react-redux": "^5.0.7",
+    "rebass": "^3.0.0-9",
     "redux": "^4.0.0",
-    "redux-saga": "^0.16.1"
+    "redux-saga": "^0.16.1",
+    "styled-components": "^4.0.3"
   }
 }
